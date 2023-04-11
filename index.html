@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/todolist.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/todolist.js"></script>
+	</head>
+	<body>
+		<header>
+			<section>
+				<label for="title">ToDoList</label>
+				<br><br>
+				<input type="text" id="title" name="title" placeholder="添加您今天的任务" required="required" autocomplete="off"/>
+				<br><br>
+				<div id="">
+					<i for="datetimers">选择时间</i>
+				</div>
+				<input type="date" name="" id="datetimers" value="" style="width: 15rem;float: inherit;height: 5rem;font-size: 2rem;"/>
+				<div id="">
+					<button type="button" id="makeSure">点击确定</button>
+				</div>
+				
+				
+			</section>
+		</header>
+		<section class="section2">
+			<h2>正在进行<span id="todocount"></span></h2>
+			<ol id="todolist" class="demo-box">
+				<li>
+					<input type="checkbox" name="" id="checkbtn" value="" />
+					<p>132</p>
+					<a href=""></a>
+				</li>
+			</ol>
+			<h2 style="border-top: 2px dashed #666666;">已经完成<span id="donecount"></span></h2>
+			<ul id="donelist">
+				
+			</ul>
+		</section>
+		<footer>
+			Copyright &copy;2023 todolist.cn
+		</footer>
+	</body>
+</html>
