@@ -4,15 +4,21 @@ $(function() {
 	// 一、
 	$("#title").on("keydown", function(e) {
 		if (e.keyCode === 13) {
-			if ($(this).val() === "") {
-				alert("请输入您的操作")
+			// console.log($("#datetimers").val().length == 0);
+			if ($(this).val() === "" || $("#datetimers").val() ==='') {
+				alert("请输入您的【操作】及【时间】")
+				return false
+
 			} else {
+
 				//先读取本地存储原来数据
 				var local = getDate();
 				// 把local数组进行更新数据把最新的数据追加给local数组
+				console.log(local);
 				local.push({
 					title: $(this).val(),
-					done: false
+					done: false,
+					datetimers: $("#datetimers").val()
 				});
 				// 把这个数组local 存储给本地存储
 				saveDate(local);
@@ -23,17 +29,18 @@ $(function() {
 
 		}
 	});
-	$("#makeSure").click(function(){
-		console.log(123132132);
-		if ($("#title").val() === "") {
-			alert("请输入您的操作")
+	$("#makeSure").click(function() {
+
+		if ($("#title").val() === "" || $("#datetimers").val() ==='') {
+			alert("请输入您的【操作】及【时间】")
 		} else {
 			//先读取本地存储原来数据
 			var local = getDate();
 			// 把local数组进行更新数据把最新的数据追加给local数组
 			local.push({
 				title: $("#title").val(),
-				done: false
+				done: false,
+				datetimers: $("#datetimers").val()
 			});
 			// 把这个数组local 存储给本地存储
 			saveDate(local);
@@ -101,17 +108,34 @@ $(function() {
 		var doneCount = 0; //已完成个数
 		//遍历这个数据
 		$.each(data, function(i, n) {
-			// console.log(n);
+			console.log(n);
+			// if (n.done) {
+			// 	$("ul").prepend("<li><em>" + n.title +
+			// 		"</em><input type='checkbox' checked='checked'/><p>" + n.title +
+			// 		"</p><a href='javascript:;' id=" + i + ">删除</a></li>")
+			// 	doneCount++;
+			// } else {
+			// 	$("ol").prepend("<li><input type='checkbox'/><p>" + n.title +
+			// 		"</p><a href='javascript:;' id=" + i + ">删除</a></li>")
+			// 	todoCount++;
+
+			// }
+
 			if (n.done) {
-				$("ul").prepend("<li><input type='checkbox' checked='checked'/><p>" + n.title +
+				$("ul").prepend("<li><em>" + n.datetimers +
+					"</em><input type='checkbox' checked='checked'/><p>" + n.title +
 					"</p><a href='javascript:;' id=" + i + ">删除</a></li>")
 				doneCount++;
 			} else {
-				$("ol").prepend("<li><input type='checkbox'/><p>" + n.title +
-					"</p><a href='javascript:;' id=" + i + ">删除</a></li>")
+				$("ol").prepend(`<li><em>${n.datetimers}
+					</em><input type='checkbox'/><p>${n.title}
+					</p><a href='javascript:;' id=${i}>删除</a></li>`)
 				todoCount++;
 
 			}
+
+
+
 		});
 		$("#todocount").text(todoCount)
 		$("#donecount").text(doneCount)
